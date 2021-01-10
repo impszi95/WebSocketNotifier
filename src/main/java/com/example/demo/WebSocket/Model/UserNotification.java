@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
-public class NewMatchNotification {
-    String content;
+public class UserNotification {
+    String matchName;
+    String matchthumbnail;
 }

@@ -1,10 +1,13 @@
 package com.example.demo.WebSocket.Controller;
 
-import com.example.demo.WebSocket.Model.SentNotification;
+import com.example.demo.WebSocket.Model.UserNotification;
+import com.example.demo.WebSocket.Model.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Base64;
 
 @RestController
 public class InternalController {
@@ -12,13 +15,17 @@ public class InternalController {
     @Autowired
     WebSocketController webSocketController;
 
-    @RequestMapping("/notify/{userX}-{nameX}/{userY}-{nameY}")
-    public void n(@PathVariable String userX,@PathVariable String userY,@PathVariable String nameX,@PathVariable String nameY) throws Exception {
+    @RequestMapping("/notify")
+    public void n(@RequestBody Notification notification) throws Exception {
 
-        String message = nameY;
-        webSocketController.Notify(userX, message);
+        UserNotification userNotificationX = new UserNotification();
+        userNotificationX.setMatchName(notification.getUsernameY());
+        userNotificationX.setMatchthumbnail(Base64.getEncoder().encodeToString(notification.getThumbnailY()));
+        webSocketController.Notify(notification.getUserIdX(), userNotificationX);
 
-        String message2 = nameX;
-        webSocketController.Notify(userY, message2);
+        UserNotification userNotificationY = new UserNotification();
+        userNotificationY.setMatchName(notification.getUsernameX());
+        userNotificationY.setMatchthumbnail(Base64.getEncoder().encodeToString(notification.getThumbnailX()));
+        webSocketController.Notify(notification.getUserIdY(), userNotificationY);
     }
 }
