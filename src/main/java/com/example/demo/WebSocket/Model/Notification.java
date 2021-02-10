@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class Notification {
     String userIdX;
-    String usernameX;
+    String nameX;
     byte[] thumbnailX;
 
     String userIdY;
-    String usernameY;
+    String nameY;
     byte[] thumbnailY;
 }

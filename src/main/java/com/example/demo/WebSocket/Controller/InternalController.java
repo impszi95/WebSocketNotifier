@@ -19,12 +19,12 @@ public class InternalController {
     public void n(@RequestBody Notification notification) throws Exception {
 
         UserNotification userNotificationX = new UserNotification();
-        userNotificationX.setMatchName(notification.getUsernameY());
+        userNotificationX.setMatchName(notification.getNameY());
         userNotificationX.setMatchthumbnail(Base64.getEncoder().encodeToString(notification.getThumbnailY()));
         webSocketController.Notify(notification.getUserIdX(), userNotificationX);
 
         UserNotification userNotificationY = new UserNotification();
-        userNotificationY.setMatchName(notification.getUsernameX());
+        userNotificationY.setMatchName(notification.getNameX());
         userNotificationY.setMatchthumbnail(Base64.getEncoder().encodeToString(notification.getThumbnailX()));
         webSocketController.Notify(notification.getUserIdY(), userNotificationY);
     }
