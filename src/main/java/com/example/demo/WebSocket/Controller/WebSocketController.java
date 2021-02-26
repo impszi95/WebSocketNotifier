@@ -3,10 +3,10 @@ package com.example.demo.WebSocket.Controller;
 import com.example.demo.WebSocket.Model.UserNotification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.stereotype.Controller;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class WebSocketController {
 
     @Autowired
